@@ -33,5 +33,9 @@ public class App
         Student student1 = new Student("Brian McKenna",323912,"brianm@dkit.ie","0876525362");
 
         System.out.println(student1);
+
+        ComputerBooking booking1 = new ComputerBooking(1,1234,"2016-11-09T11:44:44.797", "2016-11-13T11:44:44.797");
+
+        System.out.println(booking1);
     }
 }
