@@ -34,7 +34,8 @@ public class App
 
         System.out.println(student1);
 
-        ComputerBooking booking1 = new ComputerBooking(1,1234,"2016-11-09T11:44:44.797", "2016-11-13T11:44:44.797");
+        // yyyy-MM-dd HH:mm:ss" is the format I want
+        ComputerBooking booking1 = new ComputerBooking(1,1234,"2016-11-09 10:55:00", "2016-11-15 10:55:00");
 
         System.out.println(booking1);
     }

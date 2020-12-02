@@ -1,8 +1,9 @@
 package com.dkit.sd2b.BrianMcKenna;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
-// TODO: 02/12/2020 - Need to format dateTime using DateTimeFormatter
+// TODO: 02/12/2020 - Need to remove the T from the datetime format
 
 public class ComputerBooking
 {
@@ -16,8 +17,9 @@ public class ComputerBooking
     {
         this.bookingId = bookingId;
         this.studentId = studentId;
-        this.bookingDateTime = LocalDateTime.parse(strBookingDateTime);
-        this.returnDateTime = LocalDateTime.parse(strReturnDateTime);
+        this.bookingDateTime = LocalDateTime.parse(strBookingDateTime,DateTimeFormatter.ofPattern("yyyy-MM-dd " +
+                "HH:mm:ss"));
+        this.returnDateTime = LocalDateTime.parse(strReturnDateTime,DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
     }
 
     public int getBookingId()
