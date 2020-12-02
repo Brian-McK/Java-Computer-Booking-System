@@ -1,7 +1,5 @@
 package com.dkit.sd2b.BrianMcKenna;
 
-import java.time.LocalDate;
-
 public class Desktop extends Computer
 {
     private String externalMonitor;

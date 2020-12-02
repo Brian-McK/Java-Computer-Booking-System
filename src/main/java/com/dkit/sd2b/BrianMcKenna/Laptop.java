@@ -1,7 +1,5 @@
 package com.dkit.sd2b.BrianMcKenna;
 
-import java.time.LocalDate;
-
 public class Laptop extends Computer
 {
     // inches

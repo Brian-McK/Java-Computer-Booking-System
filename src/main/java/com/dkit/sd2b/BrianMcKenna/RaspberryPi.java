@@ -1,16 +1,14 @@
 package com.dkit.sd2b.BrianMcKenna;
 
-import java.time.LocalDate;
-
 public class RaspberryPi extends Computer
 {
     private int GPIOPins;
-    private int sdCardSize;
+    private String sdCardSize;
 
-    public RaspberryPi(String manufacturer, String processor, String ramSize, String diskSize, double weight,
-                       String assetTag, String strPurchaseDate, int GPIOPins, int sdCardSize)
+    public RaspberryPi(String manufacturer, String processor, String ramSize, double weight,
+                       String assetTag, String strPurchaseDate, int GPIOPins, String sdCardSize)
     {
-        super(manufacturer, processor, ramSize, diskSize, weight, assetTag, strPurchaseDate);
+        super(manufacturer, processor, ramSize, weight, assetTag, strPurchaseDate);
 
         this.GPIOPins = GPIOPins;
         this.sdCardSize = sdCardSize;
@@ -26,12 +24,12 @@ public class RaspberryPi extends Computer
         this.GPIOPins = GPIOPins;
     }
 
-    public int getSdCardSize()
+    public String getSdCardSize()
     {
         return sdCardSize;
     }
 
-    public void setSdCardSize(int sdCardSize)
+    public void setSdCardSize(String sdCardSize)
     {
         this.sdCardSize = sdCardSize;
     }

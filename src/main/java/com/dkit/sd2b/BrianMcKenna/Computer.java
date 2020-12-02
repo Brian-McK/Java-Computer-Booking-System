@@ -24,6 +24,17 @@ public class Computer
         this.purchaseDate = LocalDate.parse(strPurchaseDate);
     }
 
+    public Computer(String manufacturer, String processor, String ramSize, double weight, String assetTag, String strPurchaseDate)
+    {
+        this.manufacturer = manufacturer;
+        this.processor = processor;
+        this.ramSize = ramSize;
+        this.diskSize = null;
+        this.weight = weight;
+        this.assetTag = assetTag;
+        this.purchaseDate = LocalDate.parse(strPurchaseDate);
+    }
+
     public String getManufacturer()
     {
         return manufacturer;
