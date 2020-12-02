@@ -26,5 +26,12 @@ public class App
                 "-03-05",40,"32GB");
 
         System.out.println(pi1);
+
+        System.out.println("\n--------------------------");
+
+        // Without arraylist of computers on loan
+        Student student1 = new Student("Brian McKenna",323912,"brianm@dkit.ie","0876525362");
+
+        System.out.println(student1);
     }
 }

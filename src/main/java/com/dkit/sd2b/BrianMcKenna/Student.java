@@ -19,6 +19,15 @@ public class Student
         this.computersOnLoan = computersOnLoan;
     }
 
+    public Student(String name, int id, String email, String telephone)
+    {
+        this.name = name;
+        this.id = id;
+        this.email = email;
+        this.telephone = telephone;
+        this.computersOnLoan = null;
+    }
+
     public String getName()
     {
         return name;
@@ -67,5 +76,17 @@ public class Student
     public void setComputersOnLoan(ArrayList<Computer> computersOnLoan)
     {
         this.computersOnLoan = computersOnLoan;
+    }
+
+    @Override
+    public String toString()
+    {
+        return "Student{" +
+                "name='" + name + '\'' +
+                ", id=" + id +
+                ", email='" + email + '\'' +
+                ", telephone='" + telephone + '\'' +
+                ", computersOnLoan=" + computersOnLoan +
+                '}';
     }
 }
