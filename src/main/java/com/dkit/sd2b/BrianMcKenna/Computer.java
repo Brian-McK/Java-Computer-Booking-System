@@ -13,7 +13,7 @@ public class Computer
     private LocalDate purchaseDate;
 
     public Computer(String manufacturer, String processor, String ramSize, String diskSize, double weight,
-                    String assetTag, LocalDate purchaseDate)
+                    String assetTag, String strPurchaseDate)
     {
         this.manufacturer = manufacturer;
         this.processor = processor;
@@ -21,7 +21,7 @@ public class Computer
         this.diskSize = diskSize;
         this.weight = weight;
         this.assetTag = assetTag;
-        this.purchaseDate = purchaseDate;
+        this.purchaseDate = LocalDate.parse(strPurchaseDate);
     }
 
     public String getManufacturer()
@@ -89,8 +89,22 @@ public class Computer
         return purchaseDate;
     }
 
-    public void setPurchaseDate(LocalDate purchaseDate)
+    public void setPurchaseDate(String strPurchaseDate)
     {
-        this.purchaseDate = purchaseDate;
+        this.purchaseDate = LocalDate.parse(strPurchaseDate);
+    }
+
+    @Override
+    public String toString()
+    {
+        return "Computer{" +
+                "manufacturer='" + manufacturer + '\'' +
+                ", processor='" + processor + '\'' +
+                ", ramSize='" + ramSize + '\'' +
+                ", diskSize='" + diskSize + '\'' +
+                ", weight=" + weight +
+                ", assetTag='" + assetTag + '\'' +
+                ", purchaseDate=" + purchaseDate +
+                '}';
     }
 }

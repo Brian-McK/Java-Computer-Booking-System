@@ -9,9 +9,9 @@ public class Laptop extends Computer
     private double batteryLife;
 
     public Laptop(String manufacturer, String processor, String ramSize, String diskSize, double weight,
-                  String assetTag, LocalDate purchaseDate, double laptopScreenSize, double batteryLife)
+                  String assetTag, String strPurchaseDate, double laptopScreenSize, double batteryLife)
     {
-        super(manufacturer, processor, ramSize, diskSize, weight, assetTag, purchaseDate);
+        super(manufacturer, processor, ramSize, diskSize, weight, assetTag, strPurchaseDate);
 
         this.laptopScreenSize = laptopScreenSize;
         this.batteryLife = batteryLife;

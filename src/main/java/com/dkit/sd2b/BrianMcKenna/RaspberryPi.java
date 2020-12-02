@@ -8,9 +8,9 @@ public class RaspberryPi extends Computer
     private int sdCardSize;
 
     public RaspberryPi(String manufacturer, String processor, String ramSize, String diskSize, double weight,
-                       String assetTag, LocalDate purchaseDate, int GPIOPins, int sdCardSize)
+                       String assetTag, String strPurchaseDate, int GPIOPins, int sdCardSize)
     {
-        super(manufacturer, processor, ramSize, diskSize, weight, assetTag, purchaseDate);
+        super(manufacturer, processor, ramSize, diskSize, weight, assetTag, strPurchaseDate);
 
         this.GPIOPins = GPIOPins;
         this.sdCardSize = sdCardSize;
