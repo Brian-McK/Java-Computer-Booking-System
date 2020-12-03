@@ -27,7 +27,7 @@ public class App
 
         System.out.println(pi1);
 
-        System.out.println("\n--------------------------");
+        System.out.println("\n------------------");
 
         // Without arraylist of computers on loan
         Student student1 = new Student("Brian McKenna","323912","brianm@dkit.ie","0876525362");
@@ -38,5 +38,51 @@ public class App
         ComputerBooking booking1 = new ComputerBooking("1","1234","2016-11-09 10:55:00", "2016-11-15 10:55:00");
 
         System.out.println(booking1);
+
+        System.out.println("\n------TESTING COMP DB---------");
+
+        ComputerDB computerDB1 = new ComputerDB();
+        computerDB1.addComputer(desktop1);
+        computerDB1.addComputer(laptop1);
+        computerDB1.addComputer(pi1);
+
+        System.out.println(computerDB1);
+
+        computerDB1.removeComputer(pi1);
+
+        System.out.println(computerDB1);
+
+        Computer referenceToAFoundComp = computerDB1.findComputerByAssetTag("DKIT-24500D");
+
+        System.out.println(referenceToAFoundComp);
+
+        computerDB1.removeComputerById("DKIT-24500D");
+
+        System.out.println(computerDB1);
+
+        System.out.println("\n------TESTING STUDENT DB---------");
+
+        System.out.println();
+
+        StudentDB studentDB1 = new StudentDB();
+        studentDB1.addStudent(student1);
+        Student student2 = new Student("Frankie McGeogh","323122","frankiemgm@dkit.ie","0876525315");
+        Student student3 = new Student("David McGuire","343182","davidm@dkit.ie","0836905310");
+        studentDB1.addStudent(student2);
+        studentDB1.addStudent(student3);
+
+        System.out.println(studentDB1);
+
+        studentDB1.removeStudent(student1);
+
+        System.out.println(studentDB1);
+
+        Student referenceToAFoundStudent = studentDB1.findStudentById("343182");
+
+        System.out.println(referenceToAFoundStudent);
+
+        studentDB1.removeStudentById("343182");
+
+        System.out.println(studentDB1);
     }
 }
