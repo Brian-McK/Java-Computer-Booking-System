@@ -5,24 +5,25 @@ import java.util.ArrayList;
 public class Student
 {
     private String name;
-    private int id;
+    private String studentId;
     private String email;
     private String telephone;
     private ArrayList<Computer> computersOnLoan;
+    // could be strings too
 
-    public Student(String name, int id, String email, String telephone, ArrayList<Computer> computersOnLoan)
+    public Student(String name, String studentId, String email, String telephone, ArrayList<Computer> computersOnLoan)
     {
         this.name = name;
-        this.id = id;
+        this.studentId = studentId;
         this.email = email;
         this.telephone = telephone;
         this.computersOnLoan = computersOnLoan;
     }
 
-    public Student(String name, int id, String email, String telephone)
+    public Student(String name, String studentId, String email, String telephone)
     {
         this.name = name;
-        this.id = id;
+        this.studentId = studentId;
         this.email = email;
         this.telephone = telephone;
         this.computersOnLoan = null;
@@ -38,14 +39,14 @@ public class Student
         this.name = name;
     }
 
-    public int getId()
+    public String getId()
     {
-        return id;
+        return studentId;
     }
 
-    public void setId(int id)
+    public void setId(String studentId)
     {
-        this.id = id;
+        this.studentId = studentId;
     }
 
     public String getEmail()
@@ -83,7 +84,7 @@ public class Student
     {
         return "Student{" +
                 "name='" + name + '\'' +
-                ", id=" + id +
+                ", studentId='" + studentId + '\'' +
                 ", email='" + email + '\'' +
                 ", telephone='" + telephone + '\'' +
                 ", computersOnLoan=" + computersOnLoan +

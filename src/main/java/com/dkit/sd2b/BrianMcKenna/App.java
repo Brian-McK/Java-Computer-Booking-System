@@ -30,12 +30,12 @@ public class App
         System.out.println("\n--------------------------");
 
         // Without arraylist of computers on loan
-        Student student1 = new Student("Brian McKenna",323912,"brianm@dkit.ie","0876525362");
+        Student student1 = new Student("Brian McKenna","323912","brianm@dkit.ie","0876525362");
 
         System.out.println(student1);
 
         // yyyy-MM-dd HH:mm:ss" is the format I want
-        ComputerBooking booking1 = new ComputerBooking(1,1234,"2016-11-09 10:55:00", "2016-11-15 10:55:00");
+        ComputerBooking booking1 = new ComputerBooking("1","1234","2016-11-09 10:55:00", "2016-11-15 10:55:00");
 
         System.out.println(booking1);
     }

@@ -4,16 +4,17 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 // TODO: 02/12/2020 - Need to remove the T from the datetime format
+// TODO: 03/12/2020 - Add in computer data type? 
 
 public class ComputerBooking
 {
     // has to be unique, increment when new booking is made
-    private int bookingId;
-    private int studentId;
+    private String bookingId;
+    private String studentId;
     private LocalDateTime bookingDateTime;
     private LocalDateTime returnDateTime;
 
-    public ComputerBooking(int bookingId, int studentId, String strBookingDateTime, String strReturnDateTime)
+    public ComputerBooking(String bookingId, String studentId, String strBookingDateTime, String strReturnDateTime)
     {
         this.bookingId = bookingId;
         this.studentId = studentId;
@@ -22,22 +23,22 @@ public class ComputerBooking
         this.returnDateTime = LocalDateTime.parse(strReturnDateTime,DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
     }
 
-    public int getBookingId()
+    public String getBookingId()
     {
         return bookingId;
     }
 
-    public void setBookingId(int bookingId)
+    public void setBookingId(String bookingId)
     {
         this.bookingId = bookingId;
     }
 
-    public int getStudentId()
+    public String getStudentId()
     {
         return studentId;
     }
 
-    public void setStudentId(int studentId)
+    public void setStudentId(String studentId)
     {
         this.studentId = studentId;
     }
