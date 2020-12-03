@@ -35,7 +35,7 @@ public class App
         System.out.println(student1);
 
         // yyyy-MM-dd HH:mm:ss" is the format I want
-        ComputerBooking booking1 = new ComputerBooking("1","1234","2016-11-09 10:55:00", "2016-11-15 10:55:00");
+        ComputerBooking booking1 = new ComputerBooking("1","1234", "DKIT-24500D","2016-11-09 10:55:00", "2016-11-15 10:55:00");
 
         System.out.println(booking1);
 
@@ -84,5 +84,7 @@ public class App
         studentDB1.removeStudentById("343182");
 
         System.out.println(studentDB1);
+
+        // TODO: 03/12/2020 - add BookingDB
     }
 }

@@ -11,13 +11,17 @@ public class ComputerBooking
     // has to be unique, increment when new booking is made
     private String bookingId;
     private String studentId;
+    // what happens if they want multiple computers in the same booking?
+    private String assetTag;
     private LocalDateTime bookingDateTime;
     private LocalDateTime returnDateTime;
 
-    public ComputerBooking(String bookingId, String studentId, String strBookingDateTime, String strReturnDateTime)
+    public ComputerBooking(String bookingId, String studentId, String assetTag, String strBookingDateTime,
+                           String strReturnDateTime)
     {
         this.bookingId = bookingId;
         this.studentId = studentId;
+        this.assetTag = assetTag;
         this.bookingDateTime = LocalDateTime.parse(strBookingDateTime,DateTimeFormatter.ofPattern("yyyy-MM-dd " +
                 "HH:mm:ss"));
         this.returnDateTime = LocalDateTime.parse(strReturnDateTime,DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
@@ -43,14 +47,25 @@ public class ComputerBooking
         this.studentId = studentId;
     }
 
+    public String getAssetTag()
+    {
+        return assetTag;
+    }
+
+    public void setAssetTag(String assetTag)
+    {
+        this.assetTag = assetTag;
+    }
+
     public LocalDateTime getBookingDateTime()
     {
         return bookingDateTime;
     }
 
-    public void setBookingDateTime(LocalDateTime bookingDateTime)
+    public void setBookingDateTime(String strBookingDateTime)
     {
-        this.bookingDateTime = bookingDateTime;
+        this.bookingDateTime = LocalDateTime.parse(strBookingDateTime,DateTimeFormatter.ofPattern("yyyy-MM-dd " +
+                "HH:mm:ss"));;
     }
 
     public LocalDateTime getReturnDateTime()
@@ -58,17 +73,18 @@ public class ComputerBooking
         return returnDateTime;
     }
 
-    public void setReturnDateTime(LocalDateTime returnDateTime)
+    public void setReturnDateTime(String strReturnDateTime)
     {
-        this.returnDateTime = returnDateTime;
+        this.returnDateTime = LocalDateTime.parse(strReturnDateTime,DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
     }
 
     @Override
     public String toString()
     {
         return "ComputerBooking{" +
-                "bookingId=" + bookingId +
-                ", studentId=" + studentId +
+                "bookingId='" + bookingId + '\'' +
+                ", studentId='" + studentId + '\'' +
+                ", assetTag='" + assetTag + '\'' +
                 ", bookingDateTime=" + bookingDateTime +
                 ", returnDateTime=" + returnDateTime +
                 '}';
