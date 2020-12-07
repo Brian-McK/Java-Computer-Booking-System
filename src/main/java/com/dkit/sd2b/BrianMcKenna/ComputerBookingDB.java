@@ -59,4 +59,12 @@ public class ComputerBookingDB
             computerBookings.remove(compBooking);
         }
     }
+
+    @Override
+    public String toString()
+    {
+        return "ComputerBookingDB{" +
+                "computerBookings=" + computerBookings +
+                '}';
+    }
 }

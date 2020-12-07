@@ -89,6 +89,32 @@ public class App
 
         System.out.println("\n------TESTING BOOKING DB---------");
 
-        // TODO: 03/12/2020 - add BookingDB
+        ComputerBookingDB computerBookingDB1 = new ComputerBookingDB();
+        computerBookingDB1.addBookingRecord(booking1);
+        ComputerBooking booking2 = new ComputerBooking("2","1254", "DKIT-24210R","2017-12-05 10:55:00", "2018-01-01 " +
+                "10:55:00");
+        ComputerBooking booking3 = new ComputerBooking("3","1294", "DKIT-24630L","2020-07-10 10:55:00", "2020-08-01 " +
+                "10:55:00");
+        computerBookingDB1.addBookingRecord(booking2);
+        computerBookingDB1.addBookingRecord(booking3);
+
+        System.out.println(computerBookingDB1);
+
+        computerBookingDB1.removeBookingById("3");
+
+        System.out.println(computerBookingDB1);
+
+        ComputerBooking referenceToAFoundCompBooking = computerBookingDB1.findBookingById("2");
+
+        System.out.println(referenceToAFoundCompBooking);
+
+        computerBookingDB1.removeBookingRecord(booking2);
+
+        System.out.println(computerBookingDB1);
+
+
+
+
+
     }
 }
