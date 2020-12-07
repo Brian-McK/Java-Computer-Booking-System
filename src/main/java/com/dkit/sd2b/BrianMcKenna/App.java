@@ -5,6 +5,8 @@ package com.dkit.sd2b.BrianMcKenna;
  Github Repo: https://github.com/Brian-McK/D00197352-CA3
 */
 
+// TODO: 07/12/2020 - LOAD DATA FROM FILE
+
 public class App 
 {
     public static void main( String[] args )
@@ -84,6 +86,8 @@ public class App
         studentDB1.removeStudentById("343182");
 
         System.out.println(studentDB1);
+
+        System.out.println("\n------TESTING BOOKING DB---------");
 
         // TODO: 03/12/2020 - add BookingDB
     }
