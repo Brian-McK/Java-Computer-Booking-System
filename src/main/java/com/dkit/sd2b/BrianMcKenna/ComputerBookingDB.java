@@ -26,6 +26,7 @@ public class ComputerBookingDB
         this.computerBookings = computerBookings;
     }
 
+    // could put in studentID and assetTag instead?
     public void addBookingRecord(ComputerBooking compBooking)
     {
         // need to check if already exists

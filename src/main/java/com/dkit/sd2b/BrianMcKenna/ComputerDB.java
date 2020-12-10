@@ -50,7 +50,7 @@ public class ComputerDB
         return null;
     }
 
-    public void removeComputerById(String assetTag)
+    public void removeComputerByAssetTag(String assetTag)
     {
         Computer computer = findComputerByAssetTag(assetTag);
 

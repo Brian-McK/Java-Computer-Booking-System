@@ -9,7 +9,7 @@ public class Computer
     private String ramSize;
     private String diskSize;
     private double weight; // Kg
-    private String assetTag;
+    private String assetTag; // ends with reference to type of computer
     private LocalDate purchaseDate;
 
     public Computer(String manufacturer, String processor, String ramSize, String diskSize, double weight,
