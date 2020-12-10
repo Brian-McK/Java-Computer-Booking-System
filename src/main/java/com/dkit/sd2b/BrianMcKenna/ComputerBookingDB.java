@@ -68,4 +68,6 @@ public class ComputerBookingDB
                 "computerBookings=" + computerBookings +
                 '}';
     }
+
+    // load from file into here
 }

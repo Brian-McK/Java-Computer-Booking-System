@@ -67,4 +67,6 @@ public class ComputerDB
                 "computers=" + computers +
                 '}';
     }
+
+    // load from file into here
 }

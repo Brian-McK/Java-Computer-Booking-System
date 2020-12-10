@@ -10,7 +10,6 @@ public class Student
     private String telephone;
     private ArrayList<String> computersOnLoan;
 
-
     public Student(String studentId, String name, String email, String telephone, ArrayList<String> computersOnLoan)
     {
         this.studentId = studentId;
@@ -26,7 +25,7 @@ public class Student
         this.name = name;
         this.email = email;
         this.telephone = telephone;
-        this.computersOnLoan = null;
+        this.computersOnLoan = new ArrayList<>();
     }
 
     public String getName()

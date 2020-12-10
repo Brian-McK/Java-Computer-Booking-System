@@ -14,13 +14,15 @@ public class App
 {
     public static void main( String[] args )
     {
-
         App app = new App();
         app.startUserMenu();
     }
 
     void startUserMenu()
     {
+        StudentDB studentDB = new StudentDB();
+        studentDB.loadStudentsFromFile("students.txt");
+
         Scanner scan = new Scanner(System.in);
         int menuOptionPicked;
         printMenuOptions();
@@ -41,7 +43,8 @@ public class App
         {
             if (menuOptionPicked == 1)
             {
-                System.out.println("option 1");
+                System.out.println("Option 1: Add student chosen");
+                addStudentHandler(studentDB);
             }
             else if (menuOptionPicked == 2)
             {
@@ -100,6 +103,15 @@ public class App
         System.out.println("Option 10: Exit");
 
         System.out.println("**********************************************");
+    }
+
+    public void addStudentHandler(StudentDB studDb)
+    {
+        // need to check if the student already exists?
+        // need to validate
+        studDb.addStudent(new Student("AAAAAAA","AAAAAA","AAAAAAA","AAAAAAA"));
+
+        System.out.println(studDb);
     }
 }
 
