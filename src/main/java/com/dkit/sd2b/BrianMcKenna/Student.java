@@ -4,26 +4,26 @@ import java.util.ArrayList;
 
 public class Student
 {
-    private String name;
     private String studentId;
+    private String name;
     private String email;
     private String telephone;
-    private ArrayList<Computer> computersOnLoan;
-    // could be strings too
+    private ArrayList<String> computersOnLoan;
 
-    public Student(String name, String studentId, String email, String telephone, ArrayList<Computer> computersOnLoan)
+
+    public Student(String studentId, String name, String email, String telephone, ArrayList<String> computersOnLoan)
     {
-        this.name = name;
         this.studentId = studentId;
+        this.name = name;
         this.email = email;
         this.telephone = telephone;
         this.computersOnLoan = computersOnLoan;
     }
 
-    public Student(String name, String studentId, String email, String telephone)
+    public Student(String studentId, String name, String email, String telephone)
     {
-        this.name = name;
         this.studentId = studentId;
+        this.name = name;
         this.email = email;
         this.telephone = telephone;
         this.computersOnLoan = null;
@@ -69,12 +69,12 @@ public class Student
         this.telephone = telephone;
     }
 
-    public ArrayList<Computer> getComputersOnLoan()
+    public ArrayList<String> getComputersOnLoan()
     {
         return computersOnLoan;
     }
 
-    public void setComputersOnLoan(ArrayList<Computer> computersOnLoan)
+    public void setComputersOnLoan(ArrayList<String> computersOnLoan)
     {
         this.computersOnLoan = computersOnLoan;
     }
@@ -83,8 +83,8 @@ public class Student
     public String toString()
     {
         return "Student{" +
-                "name='" + name + '\'' +
-                ", studentId='" + studentId + '\'' +
+                "studentId='" + studentId + '\'' +
+                ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
                 ", telephone='" + telephone + '\'' +
                 ", computersOnLoan=" + computersOnLoan +

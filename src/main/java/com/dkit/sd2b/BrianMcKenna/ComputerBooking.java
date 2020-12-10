@@ -2,6 +2,7 @@ package com.dkit.sd2b.BrianMcKenna;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 
 // TODO: 02/12/2020 - Need to remove the T from the datetime format
 // TODO: 03/12/2020 - Add in computer object instead of string assetTag?
@@ -12,16 +13,16 @@ public class ComputerBooking
     private String bookingId;
     private String studentId;
     // what happens if they want multiple computers in the same booking?
-    private String assetTag;
+    private ArrayList<String> computersOnLoan;
     private LocalDateTime bookingDateTime;
     private LocalDateTime returnDateTime;
 
-    public ComputerBooking(String bookingId, String studentId, String assetTag, String strBookingDateTime,
+    public ComputerBooking(String bookingId, String studentId, ArrayList<String> computersOnLoan, String strBookingDateTime,
                            String strReturnDateTime)
     {
         this.bookingId = bookingId;
         this.studentId = studentId;
-        this.assetTag = assetTag;
+        this.computersOnLoan = computersOnLoan;
         this.bookingDateTime = LocalDateTime.parse(strBookingDateTime,DateTimeFormatter.ofPattern("yyyy-MM-dd " +
                 "HH:mm:ss"));
         this.returnDateTime = LocalDateTime.parse(strReturnDateTime,DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
@@ -47,14 +48,14 @@ public class ComputerBooking
         this.studentId = studentId;
     }
 
-    public String getAssetTag()
+    public ArrayList<String> getComputersOnLoan()
     {
-        return assetTag;
+        return computersOnLoan;
     }
 
-    public void setAssetTag(String assetTag)
+    public void setComputersOnLoan(ArrayList<String> computersOnLoan)
     {
-        this.assetTag = assetTag;
+        this.computersOnLoan = computersOnLoan;
     }
 
     public LocalDateTime getBookingDateTime()
@@ -84,7 +85,7 @@ public class ComputerBooking
         return "ComputerBooking{" +
                 "bookingId='" + bookingId + '\'' +
                 ", studentId='" + studentId + '\'' +
-                ", assetTag='" + assetTag + '\'' +
+                ", computersOnLoan=" + computersOnLoan +
                 ", bookingDateTime=" + bookingDateTime +
                 ", returnDateTime=" + returnDateTime +
                 '}';

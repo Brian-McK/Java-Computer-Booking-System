@@ -2,7 +2,6 @@ package com.dkit.sd2b.BrianMcKenna;
 
 public class Laptop extends Computer
 {
-    // inches
     private double laptopScreenSize;
     private double batteryLife;
 
