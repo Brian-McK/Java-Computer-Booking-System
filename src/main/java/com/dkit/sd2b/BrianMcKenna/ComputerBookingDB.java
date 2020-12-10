@@ -1,6 +1,11 @@
 package com.dkit.sd2b.BrianMcKenna;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
+import java.util.Scanner;
 
 public class ComputerBookingDB
 {
@@ -69,5 +74,54 @@ public class ComputerBookingDB
                 '}';
     }
 
-    // load from file into here
+//    private String bookingId;
+//    private String studentId;
+//    private LocalDateTime bookingDateTime;
+//    private LocalDateTime returnDateTime;
+//    private ArrayList<String> computersOnLoan;
+
+
+    public void loadBookingsFromFile(String fileName)
+    {
+        File inputFile = new File(fileName);
+
+        try (Scanner scan = new Scanner(inputFile))
+        {
+            while (scan.hasNextLine())
+            {
+                String line = scan.nextLine();
+                String [] data = line.split(",");
+
+                String bookingId = data[0];
+                String studentId = data[1];
+                String bookingDateTime = data[2];
+                String returnDateTime = data[3];
+
+                ArrayList <String> computersOnLoan = new ArrayList<>();
+                for (int i = 4; i < data.length; i++)
+                {
+                    computersOnLoan.add((data[i]));
+                }
+                ComputerBooking computerBooking = new ComputerBooking(bookingId,studentId,bookingDateTime,returnDateTime,computersOnLoan);
+                computerBookings.add(computerBooking);
+            }
+
+        } catch ( FileNotFoundException exception)
+        {
+            System.out.println("FileNotFoundException caught." + exception);
+        } catch (InputMismatchException exception)
+        {
+            System.out.println("InputMismatchexception caught." + exception);
+        }
+
+        displayData(computerBookings);
+    }
+
+    public static void displayData(ArrayList<ComputerBooking> computerBookings)
+    {
+        for(ComputerBooking computerBooking:computerBookings)
+        {
+            System.out.println(computerBooking);
+        }
+    }
 }

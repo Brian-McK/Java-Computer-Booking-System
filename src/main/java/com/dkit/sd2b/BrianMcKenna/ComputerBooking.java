@@ -12,20 +12,18 @@ public class ComputerBooking
     // has to be unique, increment when new booking is made
     private String bookingId;
     private String studentId;
-    // what happens if they want multiple computers in the same booking?
-    private ArrayList<String> computersOnLoan;
     private LocalDateTime bookingDateTime;
     private LocalDateTime returnDateTime;
+    private ArrayList<String> computersOnLoan;
 
-    public ComputerBooking(String bookingId, String studentId, ArrayList<String> computersOnLoan, String strBookingDateTime,
-                           String strReturnDateTime)
+    public ComputerBooking(String bookingId, String studentId, String strBookingDateTime,
+                           String strReturnDateTime, ArrayList<String> computersOnLoan)
     {
         this.bookingId = bookingId;
         this.studentId = studentId;
+        this.bookingDateTime = LocalDateTime.parse(strBookingDateTime,DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
+        this.returnDateTime = LocalDateTime.parse(strReturnDateTime,DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
         this.computersOnLoan = computersOnLoan;
-        this.bookingDateTime = LocalDateTime.parse(strBookingDateTime,DateTimeFormatter.ofPattern("yyyy-MM-dd " +
-                "HH:mm:ss"));
-        this.returnDateTime = LocalDateTime.parse(strReturnDateTime,DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
     }
 
     public String getBookingId()
@@ -65,8 +63,7 @@ public class ComputerBooking
 
     public void setBookingDateTime(String strBookingDateTime)
     {
-        this.bookingDateTime = LocalDateTime.parse(strBookingDateTime,DateTimeFormatter.ofPattern("yyyy-MM-dd " +
-                "HH:mm:ss"));;
+        this.bookingDateTime = LocalDateTime.parse(strBookingDateTime,DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
     }
 
     public LocalDateTime getReturnDateTime()
@@ -76,7 +73,7 @@ public class ComputerBooking
 
     public void setReturnDateTime(String strReturnDateTime)
     {
-        this.returnDateTime = LocalDateTime.parse(strReturnDateTime,DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+        this.returnDateTime = LocalDateTime.parse(strReturnDateTime,DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
     }
 
     @Override
@@ -85,9 +82,9 @@ public class ComputerBooking
         return "ComputerBooking{" +
                 "bookingId='" + bookingId + '\'' +
                 ", studentId='" + studentId + '\'' +
-                ", computersOnLoan=" + computersOnLoan +
                 ", bookingDateTime=" + bookingDateTime +
                 ", returnDateTime=" + returnDateTime +
+                ", computersOnLoan=" + computersOnLoan +
                 '}';
     }
 }

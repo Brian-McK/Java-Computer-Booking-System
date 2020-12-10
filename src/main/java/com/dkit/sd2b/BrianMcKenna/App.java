@@ -6,7 +6,6 @@ package com.dkit.sd2b.BrianMcKenna;
 */
 
 // TODO: 07/12/2020 - LOAD DATA FROM FILE
-// TODO: 10/12/2020 - Make a user menu
 
 import java.util.Scanner;
 
@@ -22,6 +21,10 @@ public class App
     {
         StudentDB studentDB = new StudentDB();
         studentDB.loadStudentsFromFile("students.txt");
+
+        ComputerBookingDB compBookingDB = new ComputerBookingDB();
+        compBookingDB.loadBookingsFromFile("bookings.txt");
+
 
         Scanner scan = new Scanner(System.in);
         int menuOptionPicked;
@@ -105,13 +108,13 @@ public class App
         System.out.println("**********************************************");
     }
 
-    public void addStudentHandler(StudentDB studDb)
+    public void addStudentHandler(StudentDB studentDB)
     {
         // need to check if the student already exists?
         // need to validate
-        studDb.addStudent(new Student("AAAAAAA","AAAAAA","AAAAAAA","AAAAAAA"));
+        studentDB.addStudent(new Student("AAAAAAA","AAAAAA","AAAAAAA","AAAAAAA"));
 
-        System.out.println(studDb);
+        System.out.println(studentDB);
     }
 }
 
