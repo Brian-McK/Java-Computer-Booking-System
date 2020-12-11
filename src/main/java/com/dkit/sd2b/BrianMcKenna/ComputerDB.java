@@ -86,14 +86,14 @@ public class ComputerDB
                 Computer comp = null;
                 String line = scan.nextLine();
                 String [] data = line.split(",");
-
                 String assetTag = data[0];
+                String manufacturer = data[1];
+                String processor = data[2];
+                String ramSize = data[3];
+
                 if(assetTag.endsWith("D"))
                 {
-                    // DESKTOP
-                    String manufacturer = data[1];
-                    String processor = data[2];
-                    String ramSize = data[3];
+                    System.out.println("DESKTOP");
                     String diskSize = data[4];
                     double weight= Double.parseDouble(data[5]);
                     String purchaseDate = data[6];
@@ -103,10 +103,7 @@ public class ComputerDB
                 }
                 else if(assetTag.endsWith("L"))
                 {
-                    // LAPTOP
-                    String manufacturer = data[1];
-                    String processor = data[2];
-                    String ramSize = data[3];
+                    System.out.println("LAPTOP");
                     String diskSize = data[4];
                     double weight= Double.parseDouble(data[5]);
                     String purchaseDate = data[6];
@@ -117,10 +114,7 @@ public class ComputerDB
                 }
                 else if(assetTag.endsWith("RP"))
                 {
-                    // PI
-                    String manufacturer = data[1];
-                    String processor = data[2];
-                    String ramSize = data[3];
+                    System.out.println("PI");
                     double weight= Double.parseDouble(data[4]);
                     String purchaseDate = data[5];
                     int GPIOPins = Integer.parseInt(data[6]);
