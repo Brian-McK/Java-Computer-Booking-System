@@ -5,6 +5,7 @@ package com.dkit.sd2b.BrianMcKenna;
  Github Repo: https://github.com/Brian-McK/D00197352-CA3
 */
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class App
@@ -71,6 +72,7 @@ public class App
             else if (menuOptionPicked == 4)
             {
                 System.out.println("option 4");
+
             }
             else if (menuOptionPicked == 5)
             {
@@ -107,6 +109,7 @@ public class App
         System.out.println("Option 1: Add student"); // I made sure by checking the id and email first
         System.out.println("Option 2: Delete Student"); // need to check if the student already exists?
         System.out.println("Option 3: Edit Student");
+        System.out.println("Option 4: Print Student Details");
         // need to check if the student already exists and make sure the new data is not used already e.g studentId
         System.out.println("Option 4: Add a booking"); // need to check if the booking already exists?
         System.out.println("Option 5: Print current bookings"); // print all without date returned
@@ -184,6 +187,8 @@ public class App
     {
         Scanner scan = new Scanner(System.in);
 
+        // TODO: 11/12/2020 - could add in a skip feature if user wants to skip the edit of a field
+
         System.out.println("Enter studentId to edit student: ");
         String studentToBeEditedId = scan.nextLine();
 
@@ -192,10 +197,50 @@ public class App
             System.out.println("Invalid entry, please enter StudentId again: ");
             studentToBeEditedId = scan.nextLine();
         }
+        Student studentForEdit = studentDB.findStudentById(studentToBeEditedId); // make new student instead?
+        studentForEdit.printStudentDetails();
 
-        studentDB.findStudentById(studentToBeEditedId).printStudentDetails();
+        System.out.println("Edit StudentId: " + studentForEdit.getId());
+        String updatedStudentId = scan.nextLine();
 
+        while (!(updatedStudentId.matches(REGEX_STUDENT_ID)) || !studentDB.checkStudentIdExists(studentForEdit.getId()))
+        {
+            System.out.println("Invalid entry, please enter StudentId again: ");
+            updatedStudentId = scan.nextLine();
+        }
+        studentForEdit.setId(updatedStudentId);
 
+        studentForEdit.printStudentDetails();
+
+        System.out.println("Edit StudentName: " + studentForEdit.getName());
+        String updatedStudentName = scan.nextLine();
+        studentForEdit.setName(updatedStudentName);
+
+        studentForEdit.printStudentDetails();
+
+        System.out.println("Edit StudentEmail: " + studentForEdit.getEmail());
+        String updatedStudentEmail = scan.nextLine();
+
+        while (!(updatedStudentEmail.matches(REGEX_STUDENT_EMAIL)) || studentDB.checkStudentEmailExists(studentForEdit.getId()))
+        {
+            System.out.println("Invalid entry, please enter studentEmail again: ");
+            updatedStudentEmail = scan.nextLine();
+        }
+        studentForEdit.setEmail(updatedStudentEmail);
+
+        studentForEdit.printStudentDetails();
+
+        System.out.println("Edit studentTel:" + studentForEdit.getTelephone());
+        String updatedStudentTel = scan.nextLine();
+
+        while (!updatedStudentTel.matches(REGEX_STUDENT_PHONE))
+        {
+            System.out.println("Invalid entry, please enter studentTel again: ");
+            updatedStudentTel = scan.nextLine();
+        }
+        studentForEdit.setTelephone(updatedStudentEmail);
+
+        studentForEdit.printStudentDetails();
     }
 }
 
