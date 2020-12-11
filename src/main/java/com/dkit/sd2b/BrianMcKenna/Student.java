@@ -89,4 +89,13 @@ public class Student
                 ", computersOnLoan=" + computersOnLoan +
                 '}';
     }
+
+    public void printStudentDetails()
+    {
+        System.out.printf("Student ID: %s\n" +
+                        "Student Name: %s\n" +
+                        "Student Email: %s\n" +
+                        "Student Telephone: %s\n" +
+                        "Student Computers On Loan: %s\n",studentId,name,email,telephone,computersOnLoan);
+    }
 }

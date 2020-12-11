@@ -65,7 +65,8 @@ public class App
             }
             else if (menuOptionPicked == 3)
             {
-                System.out.println("option 3");
+                System.out.println("Option 3: Edit Student chosen");
+                editStudentHandler(studentDB);
             }
             else if (menuOptionPicked == 4)
             {
@@ -177,6 +178,24 @@ public class App
         System.out.println("REMOVED: " + studentToBeDeletedId);
 
         System.out.println(studentDB);
+    }
+
+    public void editStudentHandler(StudentDB studentDB)
+    {
+        Scanner scan = new Scanner(System.in);
+
+        System.out.println("Enter studentId to edit student: ");
+        String studentToBeEditedId = scan.nextLine();
+
+        while (!(studentToBeEditedId.matches(REGEX_STUDENT_ID)) || !studentDB.checkStudentIdExists(studentToBeEditedId))
+        {
+            System.out.println("Invalid entry, please enter StudentId again: ");
+            studentToBeEditedId = scan.nextLine();
+        }
+
+        studentDB.findStudentById(studentToBeEditedId).printStudentDetails();
+
+
     }
 }
 
