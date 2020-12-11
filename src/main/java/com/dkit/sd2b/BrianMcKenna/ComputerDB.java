@@ -1,6 +1,11 @@
 package com.dkit.sd2b.BrianMcKenna;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
+import java.util.Scanner;
 
 public class ComputerDB
 {
@@ -68,5 +73,82 @@ public class ComputerDB
                 '}';
     }
 
-    // load from file into here
+    // TODO: 11/12/2020 - put asset tag first in comp db
+
+    public void loadComputersFromFile(String fileName)
+    {
+        File inputFile = new File(fileName);
+
+        try (Scanner scan = new Scanner(inputFile))
+        {
+            while (scan.hasNextLine())
+            {
+                Computer comp = null;
+                String line = scan.nextLine();
+                String [] data = line.split(",");
+
+                String assetTag = data[0];
+                if(assetTag.endsWith("D"))
+                {
+                    // DESKTOP
+                    String manufacturer = data[1];
+                    String processor = data[2];
+                    String ramSize = data[3];
+                    String diskSize = data[4];
+                    double weight= Double.parseDouble(data[5]);
+                    String purchaseDate = data[6];
+                    String externalMonitor = data[7];
+                    comp = new Desktop(assetTag,manufacturer,processor,ramSize,diskSize,weight,purchaseDate,
+                            externalMonitor);
+                }
+                else if(assetTag.endsWith("L"))
+                {
+                    // LAPTOP
+                    String manufacturer = data[1];
+                    String processor = data[2];
+                    String ramSize = data[3];
+                    String diskSize = data[4];
+                    double weight= Double.parseDouble(data[5]);
+                    String purchaseDate = data[6];
+                    double laptopScreenSize = Double.parseDouble(data[7]);
+                    double batteryLife = Double.parseDouble(data[8]);
+                    comp = new Laptop(assetTag,manufacturer,processor,ramSize,diskSize,weight,purchaseDate,
+                            laptopScreenSize,batteryLife);
+                }
+                else if(assetTag.endsWith("RP"))
+                {
+                    // PI
+                    String manufacturer = data[1];
+                    String processor = data[2];
+                    String ramSize = data[3];
+                    double weight= Double.parseDouble(data[4]);
+                    String purchaseDate = data[5];
+                    int GPIOPins = Integer.parseInt(data[6]);
+                    String sdCardSize = data[7];
+                    comp = new RaspberryPi(assetTag,manufacturer,processor,ramSize,weight,purchaseDate,
+                            GPIOPins,sdCardSize);
+                }
+
+//                Computer computer = new Computer(manufacturer,processor,ramSize,diskSize,weight,assetTag,purchaseDate);
+                computers.add(comp);
+            }
+
+        } catch ( FileNotFoundException exception)
+        {
+            System.out.println("FileNotFoundException caught." + exception);
+        } catch (InputMismatchException exception)
+        {
+            System.out.println("InputMismatchexception caught." + exception);
+        }
+
+        displayData(computers);
+    }
+
+    public static void displayData(ArrayList<Computer> computersList)
+    {
+        for(Computer computer:computersList)
+        {
+            System.out.println(computer);
+        }
+    }
 }

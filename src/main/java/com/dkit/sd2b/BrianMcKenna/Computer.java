@@ -4,34 +4,33 @@ import java.time.LocalDate;
 
 public class Computer
 {
+    private String assetTag; // ends with reference to type of computer
     private String manufacturer;
     private String processor;
     private String ramSize;
     private String diskSize;
     private double weight; // Kg
-    private String assetTag; // ends with reference to type of computer
     private LocalDate purchaseDate;
 
-    public Computer(String manufacturer, String processor, String ramSize, String diskSize, double weight,
-                    String assetTag, String strPurchaseDate)
+    public Computer(String assetTag, String manufacturer, String processor, String ramSize, String diskSize, double weight,String strPurchaseDate)
     {
+        this.assetTag = assetTag;
         this.manufacturer = manufacturer;
         this.processor = processor;
         this.ramSize = ramSize;
         this.diskSize = diskSize;
         this.weight = weight;
-        this.assetTag = assetTag;
         this.purchaseDate = LocalDate.parse(strPurchaseDate);
     }
 
-    public Computer(String manufacturer, String processor, String ramSize, double weight, String assetTag, String strPurchaseDate)
+    public Computer(String assetTag,String manufacturer, String processor, String ramSize, double weight, String strPurchaseDate)
     {
+        this.assetTag = assetTag;
         this.manufacturer = manufacturer;
         this.processor = processor;
         this.ramSize = ramSize;
         this.diskSize = null;
         this.weight = weight;
-        this.assetTag = assetTag;
         this.purchaseDate = LocalDate.parse(strPurchaseDate);
     }
 
@@ -109,12 +108,12 @@ public class Computer
     public String toString()
     {
         return "Computer{" +
-                "manufacturer='" + manufacturer + '\'' +
+                "assetTag='" + assetTag + '\'' +
+                ", manufacturer='" + manufacturer + '\'' +
                 ", processor='" + processor + '\'' +
                 ", ramSize='" + ramSize + '\'' +
                 ", diskSize='" + diskSize + '\'' +
                 ", weight=" + weight +
-                ", assetTag='" + assetTag + '\'' +
                 ", purchaseDate=" + purchaseDate +
                 '}';
     }

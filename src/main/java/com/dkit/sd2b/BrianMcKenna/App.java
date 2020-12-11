@@ -25,6 +25,10 @@ public class App
         ComputerBookingDB compBookingDB = new ComputerBookingDB();
         compBookingDB.loadBookingsFromFile("bookings.txt");
 
+        ComputerDB computerDB = new ComputerDB();
+        computerDB.loadComputersFromFile("computers.txt");
+
+        // TODO: 10/12/2020 - load computerDB
 
         Scanner scan = new Scanner(System.in);
         int menuOptionPicked;

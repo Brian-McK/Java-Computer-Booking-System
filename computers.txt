@@ -1,16 +1,27 @@
-HP,Intel Core i7 8th Gen,16GB,2TB,8,DKIT-24500D,2020-06-20,Samsung 21 Inch
-Dell,Intel Core i5 6th Gen,8GB,1TB,10,DKIT-24501D,2020-06-19,Dell 19 Inch
-Samsung,Intel Core i9 10th Gen,32GB,2TB,6,DKIT-24502D,2020-08-18,Samsung 21 Inch
-HP,Intel Core i5 5th Gen,4GB,512GB,12,DKIT-24503D,2018-01-22,HP 15 Inch
-Dell,Intel Core i9 12th Gen,32GB,4TB,8,DKIT-24504D,2020-11-18,Samsung 23 Inch
-Apple MacBook Pro,Intel Core i5,16GB,256GB,4,DKIT-2550L,2018-02-11,13,10.5
-Dell,Intel Core i7,8GB,512GB,2.5,DKIT-2551L,2018-01-16,15,10
-HP,Intel Core i8,16GB,1TB,1.5,DKIT-2552L,2019-07-22,17,8.5
-Lenovo,Intel Core i9,32GB,2TB,2,DKIT-2553L,2020-03-22,13,10.5
-Apple MacBook Pro,Intel Core i5,4GB,512GB,3.5,DKIT-2554L,2021-05-15,15,6.5
-Raspberry Pi, Quad-Core Arm Cortex-A72,4GB,0.1,DKIT-2600RP,2020-08-09,40,32GB
-Raspberry Pi, Quad-Core Arm Cortex-A72,8GB,0.1,DKIT-2601RP,2019-15-09,40,32GB
-Raspberry Pi, Quad-Core Arm Cortex-A72,4GB,0.1,DKIT-2602RP,2020-12-09,40,32GB
-Raspberry Pi, Quad-Core Arm Cortex-A91,8GB,0.1,DKIT-2603RP,2019-02-6,80,64GB
-Raspberry Pi, Quad-Core Arm Cortex-A72,4GB,0.1,DKIT-2604RP,2019-05-12,40,32GB
-Raspberry Pi, Quad-Core Arm Cortex-A91,16GB,0.1,DKIT-2605RP,2018-03-05,80,128GB
+String assetTag,String manufacturer, String processor, String ramSize, String diskSize, double weight,
+String strPurchaseDate, String externalMonitor
+
+DKIT-24500D,HP,Intel Core i7 8th Gen,16GB,2TB,8,2020-06-20,Samsung 21 Inch
+DKIT-24501D,Dell,Intel Core i5 6th Gen,8GB,1TB,10,2020-06-19,Dell 19 Inch
+DKIT-24502D,Samsung,Intel Core i9 10th Gen,32GB,2TB,6,2020-08-18,Samsung 21 Inch
+DKIT-24503D,HP,Intel Core i5 5th Gen,4GB,512GB,12,2018-01-22,HP 15 Inch
+DKIT-24504D,Dell,Intel Core i9 12th Gen,32GB,4TB,8,2020-11-18,Samsung 23 Inch
+
+String assetTag,String manufacturer, String processor, String ramSize, String diskSize, double weight,
+String strPurchaseDate, double laptopScreenSize, double batteryLife
+
+DKIT-2550L,Apple MacBook Pro,Intel Core i5,16GB,256GB,4,2018-02-11,13,10.5
+DKIT-2551L,Dell,Intel Core i7,8GB,512GB,2.5,2018-01-16,15,10
+DKIT-2552L,HP,Intel Core i8,16GB,1TB,1.5,2019-07-22,17,8.5
+DKIT-2553L,Lenovo,Intel Core i9,32GB,2TB,2,2020-03-22,13,10.5
+DKIT-2554L,Apple MacBook Pro,Intel Core i5,4GB,512GB,3.5,2021-05-15,15,6.5
+
+String assetTag, String manufacturer, String processor, String ramSize, double weight,
+String strPurchaseDate, int GPIOPins, String sdCardSize
+
+DKIT-2600RP,Raspberry Pi,Quad-Core Arm Cortex-A72,4GB,0.1,2020-08-09,40,32GB
+DKIT-2601RP,Raspberry Pi,Quad-Core Arm Cortex-A72,8GB,0.1,2019-15-09,40,32GB
+DKIT-2602RP,Raspberry Pi,Quad-Core Arm Cortex-A72,4GB,0.1,2020-12-09,40,32GB
+DKIT-2603RP,Raspberry Pi,Quad-Core Arm Cortex-A91,8GB,0.1,2019-02-6,80,64GB
+DKIT-2604RP,Raspberry Pi,Quad-Core Arm Cortex-A72,4GB,0.1,2019-05-12,40,32GB
+DKIT-2605RP,Raspberry Pi,Quad-Core Arm Cortex-A91,16GB,0.1,2018-03-05,80,128GB
