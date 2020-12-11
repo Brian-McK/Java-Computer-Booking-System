@@ -9,13 +9,18 @@ import java.util.Scanner;
 
 public class App
 {
+    String REGEX_STUDENT_ID = "[D][0][0][0-9]+";
+    String REGEX_STUDENT_EMAIL = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+            + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+    String REGEX_STUDENT_PHONE = "08[3679]";
+
     public static void main( String[] args )
     {
         App app = new App();
         app.startUserMenu();
     }
 
-    // TODO: 11/12/2020 - add student not duplicate
+    // TODO: 11/12/2020 - use CompareTo?
     // TODO: 11/12/2020 - Comparable
     // TODO: 11/12/2020 - increment booking id when new booking is made 
 
@@ -55,7 +60,8 @@ public class App
             }
             else if (menuOptionPicked == 2)
             {
-                System.out.println("option 2");
+                System.out.println("Option 2: Delete Student chosen");
+                deleteStudentHandler(studentDB);
             }
             else if (menuOptionPicked == 3)
             {
@@ -97,7 +103,7 @@ public class App
     {
         System.out.println("********** WELCOME ***********");
 
-        System.out.println("Option 1: Add student"); // need to check if the student already exists?
+        System.out.println("Option 1: Add student"); // I made sure by checking the id and email first
         System.out.println("Option 2: Delete Student"); // need to check if the student already exists?
         System.out.println("Option 3: Edit Student");
         // need to check if the student already exists and make sure the new data is not used already e.g studentId
@@ -115,17 +121,15 @@ public class App
     public void addStudentHandler(StudentDB studentDB)
     {
         Scanner scan = new Scanner(System.in);
-        String regexStudentId = "[D][0][0][0-9]+";
 
         System.out.println("Enter StudentId:");
         String studentId = scan.nextLine();
 
-        while (!(studentId.matches(regexStudentId)) || studentDB.checkStudentIdExists(studentId))
+        while (!(studentId.matches(REGEX_STUDENT_ID)) || studentDB.checkStudentIdExists(studentId))
         {
             System.out.println("Invalid entry, please enter StudentId again: ");
             studentId = scan.nextLine();
         }
-
         System.out.println(studentId);
 
         System.out.println("Enter Name:");
@@ -133,38 +137,44 @@ public class App
 
         System.out.println(studentName);
 
-        String regexStudentEmail = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
-                + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
-
         System.out.println("Enter StudentEmail:");
         String studentEmail = scan.nextLine();
 
-        while (!(studentEmail.matches(regexStudentEmail)) || studentDB.checkStudentEmailExists(studentEmail))
+        while (!(studentEmail.matches(REGEX_STUDENT_EMAIL)) || studentDB.checkStudentEmailExists(studentEmail))
         {
             System.out.println("Invalid entry, please enter studentEmail again: ");
             studentEmail = scan.nextLine();
         }
-
         System.out.println(studentEmail);
-
-        // TODO - FIX REGEX
-        String regexStudentTel = "08[3679]";
 
         System.out.println("Enter studentTel:");
         String studentTel = scan.nextLine();
 
-        while (!studentTel.matches(regexStudentTel))
+        while (!studentTel.matches(REGEX_STUDENT_PHONE))
         {
             System.out.println("Invalid entry, please enter studentTel again: ");
             studentTel = scan.nextLine();
         }
-
         System.out.println(studentTel);
 
-        // compareTo
-        // need to check if the student already exists?
-        // need to validate
         studentDB.addStudent(new Student(studentId,studentName,studentEmail,studentTel));
+        System.out.println(studentDB);
+    }
+
+    public void deleteStudentHandler(StudentDB studentDB)
+    {
+        Scanner scan = new Scanner(System.in);
+
+        System.out.println("Enter studentId to delete student: ");
+        String studentToBeDeletedId = scan.nextLine();
+
+        while (!(studentToBeDeletedId.matches(REGEX_STUDENT_ID)) || !studentDB.checkStudentIdExists(studentToBeDeletedId))
+        {
+            System.out.println("Invalid entry, please enter StudentId again: ");
+            studentToBeDeletedId = scan.nextLine();
+        }
+        studentDB.removeStudentById(studentToBeDeletedId);
+        System.out.println("REMOVED: " + studentToBeDeletedId);
 
         System.out.println(studentDB);
     }

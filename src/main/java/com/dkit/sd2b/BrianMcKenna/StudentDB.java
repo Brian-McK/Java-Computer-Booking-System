@@ -9,7 +9,6 @@ import java.util.Scanner;
 public class StudentDB
 {
     ArrayList<Student> students;
-    private String studentId;
 
     public StudentDB(ArrayList<Student> students)
     {
