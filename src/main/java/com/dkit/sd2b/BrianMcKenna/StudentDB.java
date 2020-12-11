@@ -9,6 +9,7 @@ import java.util.Scanner;
 public class StudentDB
 {
     ArrayList<Student> students;
+    private String studentId;
 
     public StudentDB(ArrayList<Student> students)
     {
@@ -50,6 +51,18 @@ public class StudentDB
         for (int i = 0; i < students.size(); i++)
         {
             if (students.get(i).getId().equals(studentId))
+            {
+                return students.get(i);
+            }
+        }
+        return null;
+    }
+
+    public Student findStudentByEmail(String studentEmail)
+    {
+        for (int i = 0; i < students.size(); i++)
+        {
+            if (students.get(i).getEmail().equals(studentEmail))
             {
                 return students.get(i);
             }
@@ -119,4 +132,15 @@ public class StudentDB
             System.out.println(s);
         }
     }
+
+    public boolean checkStudentIdExists(String studentId)
+    {
+        return findStudentById(studentId) != null;
+    }
+
+    public boolean checkStudentEmailExists(String studentEmail)
+    {
+        return findStudentByEmail(studentEmail) != null;
+    }
+
 }

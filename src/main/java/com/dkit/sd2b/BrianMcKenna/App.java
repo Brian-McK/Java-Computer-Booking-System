@@ -15,7 +15,9 @@ public class App
         app.startUserMenu();
     }
 
+    // TODO: 11/12/2020 - add student not duplicate
     // TODO: 11/12/2020 - Comparable
+    // TODO: 11/12/2020 - increment booking id when new booking is made 
 
     void startUserMenu()
     {
@@ -112,9 +114,57 @@ public class App
 
     public void addStudentHandler(StudentDB studentDB)
     {
+        Scanner scan = new Scanner(System.in);
+        String regexStudentId = "[D][0][0][0-9]+";
+
+        System.out.println("Enter StudentId:");
+        String studentId = scan.nextLine();
+
+        while (!(studentId.matches(regexStudentId)) || studentDB.checkStudentIdExists(studentId))
+        {
+            System.out.println("Invalid entry, please enter StudentId again: ");
+            studentId = scan.nextLine();
+        }
+
+        System.out.println(studentId);
+
+        System.out.println("Enter Name:");
+        String studentName = scan.nextLine();
+
+        System.out.println(studentName);
+
+        String regexStudentEmail = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+                + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+
+        System.out.println("Enter StudentEmail:");
+        String studentEmail = scan.nextLine();
+
+        while (!(studentEmail.matches(regexStudentEmail)) || studentDB.checkStudentEmailExists(studentEmail))
+        {
+            System.out.println("Invalid entry, please enter studentEmail again: ");
+            studentEmail = scan.nextLine();
+        }
+
+        System.out.println(studentEmail);
+
+        // TODO - FIX REGEX
+        String regexStudentTel = "08[3679]";
+
+        System.out.println("Enter studentTel:");
+        String studentTel = scan.nextLine();
+
+        while (!studentTel.matches(regexStudentTel))
+        {
+            System.out.println("Invalid entry, please enter studentTel again: ");
+            studentTel = scan.nextLine();
+        }
+
+        System.out.println(studentTel);
+
+        // compareTo
         // need to check if the student already exists?
         // need to validate
-        studentDB.addStudent(new Student("AAAAAAA","AAAAAA","AAAAAAA","AAAAAAA"));
+        studentDB.addStudent(new Student(studentId,studentName,studentEmail,studentTel));
 
         System.out.println(studentDB);
     }

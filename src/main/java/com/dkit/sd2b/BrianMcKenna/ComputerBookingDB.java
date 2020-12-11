@@ -114,7 +114,7 @@ public class ComputerBookingDB
             System.out.println("InputMismatchexception caught." + exception);
         }
 
-        displayData(computerBookings);
+//        displayData(computerBookings);
     }
 
     public static void displayData(ArrayList<ComputerBooking> computerBookings)

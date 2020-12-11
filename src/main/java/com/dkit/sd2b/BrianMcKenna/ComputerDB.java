@@ -118,7 +118,6 @@ public class ComputerDB
                             GPIOPins,sdCardSize);
                 }
 
-//                Computer computer = new Computer(manufacturer,processor,ramSize,diskSize,weight,assetTag,purchaseDate);
                 computers.add(comp);
             }
 
@@ -130,7 +129,7 @@ public class ComputerDB
             System.out.println("InputMismatchexception caught." + exception);
         }
 
-        displayData(computers);
+//        displayData(computers);
     }
 
     public static void displayData(ArrayList<Computer> computersList)

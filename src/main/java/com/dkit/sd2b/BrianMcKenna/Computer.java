@@ -1,6 +1,7 @@
 package com.dkit.sd2b.BrianMcKenna;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 public class Computer
 {
@@ -116,5 +117,11 @@ public class Computer
                 ", weight=" + weight +
                 ", purchaseDate=" + purchaseDate +
                 '}';
+    }
+
+    @Override
+    public int hashCode()
+    {
+        return Objects.hash(assetTag, manufacturer);
     }
 }
