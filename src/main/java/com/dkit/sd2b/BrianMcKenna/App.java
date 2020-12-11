@@ -10,10 +10,10 @@ import java.util.Scanner;
 
 public class App
 {
-    String REGEX_STUDENT_ID = "[D][0][0][0-9]+";
-    String REGEX_STUDENT_EMAIL = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+    final String REGEX_STUDENT_ID = "[D][0][0][0-9]+";
+    final String REGEX_STUDENT_EMAIL = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
             + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
-    String REGEX_STUDENT_PHONE = "08[3679]";
+    final String REGEX_STUDENT_PHONE = "08[3679]";
 
     public static void main( String[] args )
     {
@@ -50,9 +50,9 @@ public class App
             }
             menuOptionPicked = scan.nextInt();
 
-        } while (menuOptionPicked < 1 || menuOptionPicked > 10);
+        } while (menuOptionPicked < 1 || menuOptionPicked > 11);
 
-        while (menuOptionPicked != 10)
+        while (menuOptionPicked != 11)
         {
             if (menuOptionPicked == 1)
             {
@@ -71,8 +71,18 @@ public class App
             }
             else if (menuOptionPicked == 4)
             {
-                System.out.println("option 4");
+                Scanner input = new Scanner(System.in);
 
+                System.out.println("Option 4: Print Student Details chosen");
+                System.out.println("Enter studentId to print details: ");
+                String studentId = input.nextLine();
+
+                while (!(studentId.matches(REGEX_STUDENT_ID)) || !studentDB.checkStudentIdExists(studentId))
+                {
+                    System.out.println("Invalid entry, please enter StudentId again: ");
+                    studentId = input.nextLine();
+                }
+                studentDB.findStudentById(studentId).printStudentDetails();
             }
             else if (menuOptionPicked == 5)
             {
@@ -90,9 +100,13 @@ public class App
             {
                 System.out.println("option 8");
             }
-            else
+            else if(menuOptionPicked == 9)
             {
                 System.out.println("option 9");
+            }
+            else
+            {
+                System.out.println("option 10");
             }
 
             printMenuOptions();
@@ -111,13 +125,13 @@ public class App
         System.out.println("Option 3: Edit Student");
         System.out.println("Option 4: Print Student Details");
         // need to check if the student already exists and make sure the new data is not used already e.g studentId
-        System.out.println("Option 4: Add a booking"); // need to check if the booking already exists?
-        System.out.println("Option 5: Print current bookings"); // print all without date returned
-        System.out.println("Option 6: Print bookings in date/time order"); // use comparator
-        System.out.println("Option 7: Return a Computer"); // update computer booking with returned date?
-        System.out.println("Option 8: Display average length of all bookings");
-        System.out.println("Option 9: Print statistics (up to you to decide)");
-        System.out.println("Option 10: Exit");
+        System.out.println("Option 5: Add a booking"); // need to check if the booking already exists?
+        System.out.println("Option 6: Print current bookings"); // print all without date returned
+        System.out.println("Option 7: Print bookings in date/time order"); // use comparator
+        System.out.println("Option 8: Return a Computer"); // update computer booking with returned date?
+        System.out.println("Option 9: Display average length of all bookings");
+        System.out.println("Option 10: Print statistics (up to you to decide)");
+        System.out.println("Option 11: Exit");
 
         System.out.println("**********************************************");
     }
