@@ -4,9 +4,6 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
-// TODO: 02/12/2020 - Need to remove the T from the datetime format
-// TODO: 03/12/2020 - Add in computer object instead of string assetTag?
-
 public class ComputerBooking
 {
     // has to be unique, increment when new booking is made

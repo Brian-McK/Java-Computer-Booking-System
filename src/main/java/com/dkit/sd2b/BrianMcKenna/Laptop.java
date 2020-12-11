@@ -33,4 +33,14 @@ public class Laptop extends Computer
     {
         this.batteryLife = batteryLife;
     }
+
+    @Override
+    public String toString()
+    {
+        return  super.toString() +
+                "Laptop{" +
+                "laptopScreenSize=" + laptopScreenSize +
+                ", batteryLife=" + batteryLife +
+                '}';
+    }
 }

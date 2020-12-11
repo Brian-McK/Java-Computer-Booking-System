@@ -73,8 +73,6 @@ public class ComputerDB
                 '}';
     }
 
-    // TODO: 11/12/2020 - put asset tag first in comp db
-
     public void loadComputersFromFile(String fileName)
     {
         File inputFile = new File(fileName);
@@ -93,7 +91,6 @@ public class ComputerDB
 
                 if(assetTag.endsWith("D"))
                 {
-                    System.out.println("DESKTOP");
                     String diskSize = data[4];
                     double weight= Double.parseDouble(data[5]);
                     String purchaseDate = data[6];
@@ -103,7 +100,6 @@ public class ComputerDB
                 }
                 else if(assetTag.endsWith("L"))
                 {
-                    System.out.println("LAPTOP");
                     String diskSize = data[4];
                     double weight= Double.parseDouble(data[5]);
                     String purchaseDate = data[6];
@@ -114,7 +110,6 @@ public class ComputerDB
                 }
                 else if(assetTag.endsWith("RP"))
                 {
-                    System.out.println("PI");
                     double weight= Double.parseDouble(data[4]);
                     String purchaseDate = data[5];
                     int GPIOPins = Integer.parseInt(data[6]);

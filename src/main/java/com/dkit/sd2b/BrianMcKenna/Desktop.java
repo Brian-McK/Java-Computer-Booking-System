@@ -21,4 +21,13 @@ public class Desktop extends Computer
     {
         this.externalMonitor = externalMonitor;
     }
+
+    @Override
+    public String toString()
+    {
+        return super.toString() +
+                "Desktop{" +
+                "externalMonitor='" + externalMonitor + '\'' +
+                '}';
+    }
 }

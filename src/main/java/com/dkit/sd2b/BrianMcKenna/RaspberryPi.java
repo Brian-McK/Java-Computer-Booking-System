@@ -33,4 +33,14 @@ public class RaspberryPi extends Computer
     {
         this.sdCardSize = sdCardSize;
     }
+
+    @Override
+    public String toString()
+    {
+        return  super.toString() +
+                "RaspberryPi{" +
+                "GPIOPins=" + GPIOPins +
+                ", sdCardSize='" + sdCardSize + '\'' +
+                '}';
+    }
 }

@@ -5,8 +5,6 @@ package com.dkit.sd2b.BrianMcKenna;
  Github Repo: https://github.com/Brian-McK/D00197352-CA3
 */
 
-// TODO: 07/12/2020 - LOAD DATA FROM FILE
-
 import java.util.Scanner;
 
 public class App
@@ -16,6 +14,8 @@ public class App
         App app = new App();
         app.startUserMenu();
     }
+
+    // TODO: 11/12/2020 - Comparable
 
     void startUserMenu()
     {
@@ -27,8 +27,6 @@ public class App
 
         ComputerDB computerDB = new ComputerDB();
         computerDB.loadComputersFromFile("computers.txt");
-
-        // TODO: 10/12/2020 - load computerDB
 
         Scanner scan = new Scanner(System.in);
         int menuOptionPicked;
