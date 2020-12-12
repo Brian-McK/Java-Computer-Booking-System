@@ -5,7 +5,9 @@ package com.dkit.sd2b.BrianMcKenna;
  Github Repo: https://github.com/Brian-McK/D00197352-CA3
 */
 
-import java.util.ArrayList;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Collections;
 import java.util.Scanner;
 
 public class App
@@ -14,6 +16,8 @@ public class App
     final String REGEX_STUDENT_EMAIL = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
             + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
     final String REGEX_STUDENT_PHONE = "08[3679]";
+    final String REGEX_BOOKING_ID = "[B][0-9]+";
+    final String REGEX_BOOKING_DATE_TIME = "[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1]) (2[0-3]|[01][0-9]):[0-5][0-9]";
 
     public static void main( String[] args )
     {
@@ -86,7 +90,8 @@ public class App
             }
             else if (menuOptionPicked == 5)
             {
-                System.out.println("option 5");
+                System.out.println("Option 5: Add a booking chosen");
+                addComputerBookingHandler(compBookingDB,studentDB);
             }
             else if (menuOptionPicked == 6)
             {
@@ -255,6 +260,55 @@ public class App
         studentForEdit.setTelephone(updatedStudentEmail);
 
         studentForEdit.printStudentDetails();
+    }
+
+    public void addComputerBookingHandler(ComputerBookingDB compBookingDB,StudentDB studentDB)
+    {
+       // TODO - SORT BOOKINGS.TXT BY BOOKING NUMBER BY DEFAULT?
+        // TODO - INCREMENT BOOKING BY 1 MORE THAN THE PREVIOUS BOOKING
+        // TODO - MAKE SURE THAT THE COMPUTER(S) NOT ALREADY BOOKED
+
+        Scanner scan = new Scanner(System.in);
+        ComputerBooking newCompBooking = new ComputerBooking();
+
+        System.out.println("Enter BookingId:");
+        String newBookingId = scan.nextLine();
+
+        while (!(newBookingId.matches(REGEX_BOOKING_ID)) || compBookingDB.checkBookingIdExists(newBookingId))
+        {
+            System.out.println("Invalid entry, please enter newBookingId again: ");
+            newBookingId = scan.nextLine();
+        }
+        newCompBooking.setBookingId(newBookingId);
+
+        System.out.println(newCompBooking);
+
+        System.out.println("Enter StudentId:");
+        String studentId = scan.nextLine();
+
+        // check student exists
+        while (!(studentId.matches(REGEX_STUDENT_ID)) || !studentDB.checkStudentIdExists(studentId))
+        {
+            System.out.println("Invalid entry, please enter StudentId again: ");
+            studentId = scan.nextLine();
+        }
+        newCompBooking.setStudentId(studentId);
+
+        System.out.println(newCompBooking);
+
+        System.out.println("Enter Booking Date:");
+        String newBookingDateTime = scan.nextLine();
+
+        while (!(newBookingDateTime.matches(REGEX_BOOKING_DATE_TIME)) || !compBookingDB.checkValidBookingDateTime(newBookingDateTime))
+        {
+            System.out.println("Invalid entry, please enter newBookingDate again: ");
+            newBookingDateTime = scan.nextLine();
+        }
+        newCompBooking.setBookingDateTime(newBookingDateTime);
+
+        System.out.println(newCompBooking);
+
+
     }
 }
 

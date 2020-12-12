@@ -3,6 +3,7 @@ package com.dkit.sd2b.BrianMcKenna;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -74,13 +75,6 @@ public class ComputerBookingDB
                 '}';
     }
 
-//    private String bookingId;
-//    private String studentId;
-//    private LocalDateTime bookingDateTime;
-//    private LocalDateTime returnDateTime;
-//    private ArrayList<String> computersOnLoan;
-
-
     public void loadBookingsFromFile(String fileName)
     {
         File inputFile = new File(fileName);
@@ -123,5 +117,28 @@ public class ComputerBookingDB
         {
             System.out.println(computerBooking);
         }
+    }
+
+    public boolean checkBookingIdExists(String bookingId)
+    {
+        return findBookingById(bookingId) != null;
+    }
+
+    public boolean checkValidBookingDateTime(String newBookingDateTime)
+    {
+        boolean isValidDateToBook = false;
+
+        LocalDateTime dateTimeCurrent = LocalDateTime.now();
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        LocalDateTime newBookingDateTimeFormatted = LocalDateTime.parse(newBookingDateTime, formatter);
+
+        if(newBookingDateTimeFormatted.toLocalDate().isEqual(dateTimeCurrent.toLocalDate()) ||
+                newBookingDateTimeFormatted.toLocalDate().isAfter(dateTimeCurrent.toLocalDate()))
+        {
+            isValidDateToBook = true;
+        }
+
+        return isValidDateToBook;
     }
 }

@@ -124,4 +124,6 @@ public class Computer
     {
         return Objects.hash(assetTag, manufacturer);
     }
+
+    // TODO - USE COMPARE TO BELOW BUT COMPARING DIFFERENT TYPES OF COMPUTERS?
 }

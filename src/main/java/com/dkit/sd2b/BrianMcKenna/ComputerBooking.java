@@ -23,6 +23,15 @@ public class ComputerBooking
         this.computersOnLoan = computersOnLoan;
     }
 
+    public ComputerBooking()
+    {
+        this.bookingId = "";
+        this.studentId = "";
+        this.bookingDateTime = null;
+        this.returnDateTime = null;
+        this.computersOnLoan = new ArrayList<>();
+    }
+
     public String getBookingId()
     {
         return bookingId;
