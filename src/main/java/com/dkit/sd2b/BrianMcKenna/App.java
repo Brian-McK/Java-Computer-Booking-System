@@ -5,9 +5,7 @@ package com.dkit.sd2b.BrianMcKenna;
  Github Repo: https://github.com/Brian-McK/D00197352-CA3
 */
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Collections;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class App
@@ -18,6 +16,7 @@ public class App
     final String REGEX_STUDENT_PHONE = "08[3679]";
     final String REGEX_BOOKING_ID = "[B][0-9]+";
     final String REGEX_BOOKING_DATE_TIME = "[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1]) (2[0-3]|[01][0-9]):[0-5][0-9]";
+    final String REGEX_COMP_ASSET_ID = "[D][K][I][T][-][0-9]+";
 
     public static void main( String[] args )
     {
@@ -39,6 +38,8 @@ public class App
 
         ComputerDB computerDB = new ComputerDB();
         computerDB.loadComputersFromFile("computers.txt");
+
+        System.out.println(checkComputerIsAvailable("DKIT-2605RP", computerDB, compBookingDB));
 
         Scanner scan = new Scanner(System.in);
         int menuOptionPicked;
@@ -91,7 +92,7 @@ public class App
             else if (menuOptionPicked == 5)
             {
                 System.out.println("Option 5: Add a booking chosen");
-                addComputerBookingHandler(compBookingDB,studentDB);
+                addComputerBookingHandler(compBookingDB,studentDB,computerDB);
             }
             else if (menuOptionPicked == 6)
             {
@@ -262,7 +263,7 @@ public class App
         studentForEdit.printStudentDetails();
     }
 
-    public void addComputerBookingHandler(ComputerBookingDB compBookingDB,StudentDB studentDB)
+    public void addComputerBookingHandler(ComputerBookingDB compBookingDB,StudentDB studentDB, ComputerDB computerDb)
     {
        // TODO - SORT BOOKINGS.TXT BY BOOKING NUMBER BY DEFAULT?
         // TODO - INCREMENT BOOKING BY 1 MORE THAN THE PREVIOUS BOOKING
@@ -308,7 +309,48 @@ public class App
 
         System.out.println(newCompBooking);
 
+        System.out.println("Enter Computer To Book:");
+        String computerAssetTag = scan.nextLine();
 
+        ArrayList<String> computersToBeBooked = new ArrayList<>();
+
+        while (!(computerAssetTag.matches(REGEX_COMP_ASSET_ID)) || !checkComputerIsAvailable(computerAssetTag,
+                computerDb, compBookingDB))
+        {
+            System.out.println("Invalid entry, please enter computerAssetTag again: ");
+            computerAssetTag = scan.nextLine();
+        }
+        computersToBeBooked.add(computerAssetTag);
+        newCompBooking.setComputersOnLoan(computersToBeBooked);
+
+        System.out.println(newCompBooking);
+
+    }
+
+    public boolean checkComputerIsAvailable(String computerAssetTag, ComputerDB computerDb, ComputerBookingDB computerBookingDb)
+    {
+        boolean isAvailable = false;
+
+        Computer comp = computerDb.findComputerByAssetTag(computerAssetTag);
+
+        if(comp != null)
+        {
+            for (int i = 0; i < computerBookingDb.computerBookings.size(); i++)
+            {
+                for (int j = 0; j < computerBookingDb.computerBookings.get(i).getComputersOnLoan().size(); j++)
+                {
+                    if (computerBookingDb.computerBookings.get(j).getReturnDateTime() != null)
+                    {
+                        isAvailable = true;
+                    }
+                }
+            }
+        }
+        return isAvailable;
+
+        // available if it actually exists ie the college is renting it
+        // available if nobody else has it it booked
+        // if the computer has been returned i.e not null then its available
     }
 }
 

@@ -14,3 +14,4 @@ DKIT-2602RP,Raspberry Pi,Quad-Core Arm Cortex-A72,4GB,0.1,2020-12-09,40,32GB
 DKIT-2603RP,Raspberry Pi,Quad-Core Arm Cortex-A91,8GB,0.1,2019-02-06,80,64GB
 DKIT-2604RP,Raspberry Pi,Quad-Core Arm Cortex-A72,4GB,0.1,2019-05-12,40,32GB
 DKIT-2605RP,Raspberry Pi,Quad-Core Arm Cortex-A91,16GB,0.1,2018-03-05,80,128GB
+DKIT-2606RP,Raspberry Pi,Quad-Core Arm Cortex-A91,16GB,0.1,2018-09-05,80,128GB

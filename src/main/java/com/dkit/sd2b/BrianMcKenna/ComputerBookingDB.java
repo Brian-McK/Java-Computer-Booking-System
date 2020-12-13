@@ -2,9 +2,11 @@ package com.dkit.sd2b.BrianMcKenna;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.lang.reflect.Array;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -89,15 +91,32 @@ public class ComputerBookingDB
                 String bookingId = data[0];
                 String studentId = data[1];
                 String bookingDateTime = data[2];
-                String returnDateTime = data[3];
 
-                ArrayList <String> computersOnLoan = new ArrayList<>();
-                for (int i = 4; i < data.length; i++)
+                if(data.length == 4)
                 {
-                    computersOnLoan.add((data[i]));
+                    ArrayList <String> computersOnLoan = new ArrayList<>();
+                    for (int i = 3; i < data.length; i++)
+                    {
+                        computersOnLoan.add((data[i]));
+                    }
+                    ComputerBooking computerBooking = new ComputerBooking(bookingId,studentId,bookingDateTime,computersOnLoan);
+                    computerBookings.add(computerBooking);
                 }
-                ComputerBooking computerBooking = new ComputerBooking(bookingId,studentId,bookingDateTime,returnDateTime,computersOnLoan);
-                computerBookings.add(computerBooking);
+                else {
+                    String returnDateTime = data[3];
+
+                    ArrayList <String> computersOnLoan = new ArrayList<>();
+                    for (int i = 4; i < data.length; i++)
+                    {
+                        computersOnLoan.add((data[i]));
+                    }
+                    ComputerBooking computerBooking = new ComputerBooking(bookingId,studentId,bookingDateTime,returnDateTime,computersOnLoan);
+                    computerBookings.add(computerBooking);
+                }
+
+                System.out.println(data.length);
+
+                System.out.println(Arrays.toString(data));
             }
 
         } catch ( FileNotFoundException exception)

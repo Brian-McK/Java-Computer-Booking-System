@@ -32,6 +32,15 @@ public class ComputerBooking
         this.computersOnLoan = new ArrayList<>();
     }
 
+    public ComputerBooking(String bookingId, String studentId, String strBookingDateTime, ArrayList<String> computersOnLoan)
+    {
+        this.bookingId = bookingId;
+        this.studentId = studentId;
+        this.bookingDateTime = LocalDateTime.parse(strBookingDateTime,DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
+        this.returnDateTime = null;
+        this.computersOnLoan = computersOnLoan;
+    }
+
     public String getBookingId()
     {
         return bookingId;
