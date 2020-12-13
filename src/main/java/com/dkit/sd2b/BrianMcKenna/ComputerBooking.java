@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
-public class ComputerBooking
+public class ComputerBooking implements Comparable<ComputerBooking>
 {
     // has to be unique, increment when new booking is made
     private String bookingId;
@@ -101,5 +101,21 @@ public class ComputerBooking
                 ", returnDateTime=" + returnDateTime +
                 ", computersOnLoan=" + computersOnLoan +
                 '}';
+    }
+
+    @Override
+    public int compareTo(ComputerBooking other)
+    {
+        if(this.bookingDateTime.isBefore(other.bookingDateTime))
+        {
+            return -1;
+        }
+        else if(this.bookingDateTime.isAfter(other.bookingDateTime))
+        {
+            return 1;
+        }
+        else {
+            return 0;
+        }
     }
 }

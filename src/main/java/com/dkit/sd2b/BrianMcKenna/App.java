@@ -5,9 +5,7 @@ package com.dkit.sd2b.BrianMcKenna;
  Github Repo: https://github.com/Brian-McK/D00197352-CA3
 */
 
-import java.util.ArrayList;
-import java.util.LinkedHashSet;
-import java.util.Scanner;
+import java.util.*;
 
 public class App
 {
@@ -17,7 +15,6 @@ public class App
     final String REGEX_STUDENT_PHONE = "08[3679]";
     final String REGEX_BOOKING_ID = "[B][0-9]+";
     final String REGEX_BOOKING_DATE_TIME = "[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1]) (2[0-3]|[01][0-9]):[0-5][0-9]";
-    final String REGEX_COMP_ASSET_ID = "[D][K][I][T][-][0-9]+";
 
     public static void main( String[] args )
     {
@@ -100,19 +97,24 @@ public class App
             }
             else if (menuOptionPicked == 7)
             {
-                System.out.println("option 7");
+                System.out.println("option 7: Print bookings in date/time order");
+                Collections.sort(compBookingDB.computerBookings);
+                compBookingDB.printCurrentBookings();
             }
             else if (menuOptionPicked == 8)
             {
-                System.out.println("option 8");
+                System.out.println("option 8: Return a Computer");
+                // TODO: 13/12/2020 - unfinished
             }
             else if(menuOptionPicked == 9)
             {
                 System.out.println("option 9");
+                // TODO: 13/12/2020 - unfinished
             }
             else
             {
                 System.out.println("option 10");
+                // TODO: 13/12/2020 - unfinished
             }
 
             printMenuOptions();
@@ -209,9 +211,6 @@ public class App
     {
         Scanner scan = new Scanner(System.in);
 
-        // TODO: 11/12/2020 - could add in a skip feature if user wants to skip the edit of a field
-        // TODO: 13/12/2020 - EDIT THE STUDENT DIRECTLY
-
         System.out.println("Enter studentId to edit student: ");
         String studentToBeEditedId = scan.nextLine();
 
@@ -268,13 +267,8 @@ public class App
         System.out.println(studentDB);
     }
 
-
-
     public void addComputerBookingHandler(ComputerBookingDB compBookingDB,StudentDB studentDB, ComputerDB computerDB)
     {
-       // TODO - SORT BOOKINGS.TXT BY BOOKING NUMBER BY DEFAULT?
-        // TODO - INCREMENT BOOKING BY 1 MORE THAN THE PREVIOUS BOOKING
-
         Scanner scan = new Scanner(System.in);
         ComputerBooking newCompBooking = new ComputerBooking();
 
@@ -315,15 +309,12 @@ public class App
 
         System.out.println(newCompBooking);
 
-        // TODO: 13/12/2020 - show available computers
         System.out.println("AVAILABLE BEFORE: " + compBookingDB.getAvailableComputers());
 
         System.out.println("Enter computerAssetTag To Book:");
         String computerAssetTag = scan.nextLine();
 
         ArrayList<String> computersToBeBooked = new ArrayList<>();
-
-        // TODO: 13/12/2020 - ask how many would like to book
 
         while (!checkComputerIsAvailable(computerAssetTag,computerDB, compBookingDB))
         {
@@ -337,7 +328,30 @@ public class App
         System.out.println("AVAILABLE AFTER: " + compBookingDB.getAvailableComputers());
         System.out.println(compBookingDB);
 
-        // TODO: 13/12/2020 - IT LET ME BOOK THE SAME COMPUTER AGAIN - NOT GOOD, NEED TO FIX ********
+    }
+
+    // TODO: 13/12/2020 - unfinished
+    public void returnComputerHandler(String computerAssetTag, ComputerDB computerDB, ComputerBookingDB compBookingDB)
+    {
+        // check if its booked, if it is then set the return date
+        Computer comp = computerDB.findComputerByAssetTag(computerAssetTag);
+
+        ArrayList<ComputerBooking> currentBookings = getCurrentBookings(compBookingDB);
+    }
+
+    public ArrayList<ComputerBooking> getCurrentBookings(ComputerBookingDB compBookingDB)
+    {
+        ArrayList<ComputerBooking> currentBookings = new ArrayList<>();
+
+        for (int i = 0; i < compBookingDB.computerBookings.size(); i++)
+        {
+            if(compBookingDB.computerBookings.get(i).getReturnDateTime() == null)
+            {
+                currentBookings.add(compBookingDB.computerBookings.get(i));
+            }
+        }
+
+        return currentBookings;
     }
 
     public boolean checkComputerIsAvailable(String computerAssetTag, ComputerDB computerDB,
