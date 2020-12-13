@@ -5,7 +5,9 @@ package com.dkit.sd2b.BrianMcKenna;
  Github Repo: https://github.com/Brian-McK/D00197352-CA3
 */
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import java.util.Scanner;
 
 public class App
@@ -39,7 +41,8 @@ public class App
         ComputerDB computerDB = new ComputerDB();
         computerDB.loadComputersFromFile("computers.txt");
 
-        System.out.println(checkComputerIsAvailable("DKIT-2605RP", computerDB, compBookingDB));
+        // TODO: 13/12/2020 - LOGIC NOT WORKING FOR CHECKING COMPUTER AVAILABILITY
+        System.out.println(checkComputerIsAvailable("DKIT-2602RP", computerDB, compBookingDB));
 
         Scanner scan = new Scanner(System.in);
         int menuOptionPicked;
@@ -183,6 +186,8 @@ public class App
 
         studentDB.addStudent(new Student(studentId,studentName,studentEmail,studentTel));
         System.out.println(studentDB);
+
+        // TODO: 13/12/2020 - ADD COMPUTERS CURRENTLY BOOKED BY STUDENT
     }
 
     public void deleteStudentHandler(StudentDB studentDB)
@@ -208,6 +213,7 @@ public class App
         Scanner scan = new Scanner(System.in);
 
         // TODO: 11/12/2020 - could add in a skip feature if user wants to skip the edit of a field
+        // TODO: 13/12/2020 - EDIT THE STUDENT DIRECTLY
 
         System.out.println("Enter studentId to edit student: ");
         String studentToBeEditedId = scan.nextLine();
@@ -258,9 +264,11 @@ public class App
             System.out.println("Invalid entry, please enter studentTel again: ");
             updatedStudentTel = scan.nextLine();
         }
-        studentForEdit.setTelephone(updatedStudentEmail);
+        studentForEdit.setTelephone(updatedStudentTel);
 
         studentForEdit.printStudentDetails();
+
+        System.out.println(studentDB);
     }
 
     public void addComputerBookingHandler(ComputerBookingDB compBookingDB,StudentDB studentDB, ComputerDB computerDb)
@@ -324,25 +332,28 @@ public class App
         newCompBooking.setComputersOnLoan(computersToBeBooked);
 
         System.out.println(newCompBooking);
-
     }
+
+    // TODO: 13/12/2020 - LOGIC NOT WORKING FOR CHECKING COMPUTER AVAILABILITY
+    // TODO: 13/12/2020 - first make a method to print all available computers ie that have been returned (!= null)
 
     public boolean checkComputerIsAvailable(String computerAssetTag, ComputerDB computerDb, ComputerBookingDB computerBookingDb)
     {
         boolean isAvailable = false;
 
+        // check if the computer actually exists
         Computer comp = computerDb.findComputerByAssetTag(computerAssetTag);
+
+        ArrayList<String> availableComputers = getAvailableComputers(computerBookingDb);
 
         if(comp != null)
         {
-            for (int i = 0; i < computerBookingDb.computerBookings.size(); i++)
+           // check if the computer is available
+            for (int i = 0; i < availableComputers.size(); i++)
             {
-                for (int j = 0; j < computerBookingDb.computerBookings.get(i).getComputersOnLoan().size(); j++)
+                if(comp.getAssetTag().equals(availableComputers.get(i)))
                 {
-                    if (computerBookingDb.computerBookings.get(j).getReturnDateTime() != null)
-                    {
-                        isAvailable = true;
-                    }
+                    isAvailable = true;
                 }
             }
         }
@@ -351,6 +362,22 @@ public class App
         // available if it actually exists ie the college is renting it
         // available if nobody else has it it booked
         // if the computer has been returned i.e not null then its available
+    }
+
+    public ArrayList<String> getAvailableComputers(ComputerBookingDB computerBookingDb)
+    {
+        ArrayList<String> availableComputers = new ArrayList<>();
+
+        for (int i = 0; i < computerBookingDb.computerBookings.size(); i++)
+        {
+            if(computerBookingDb.computerBookings.get(i).getReturnDateTime() != null)
+            {
+                availableComputers.addAll(computerBookingDb.computerBookings.get(i).getComputersOnLoan());
+            }
+        }
+        LinkedHashSet<String> hashSet = new LinkedHashSet<>(availableComputers);
+
+        return new ArrayList<>(hashSet);
     }
 }
 

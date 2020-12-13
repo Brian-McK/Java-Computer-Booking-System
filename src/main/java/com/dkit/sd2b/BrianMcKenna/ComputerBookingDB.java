@@ -6,7 +6,6 @@ import java.lang.reflect.Array;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -113,10 +112,6 @@ public class ComputerBookingDB
                     ComputerBooking computerBooking = new ComputerBooking(bookingId,studentId,bookingDateTime,returnDateTime,computersOnLoan);
                     computerBookings.add(computerBooking);
                 }
-
-                System.out.println(data.length);
-
-                System.out.println(Arrays.toString(data));
             }
 
         } catch ( FileNotFoundException exception)
