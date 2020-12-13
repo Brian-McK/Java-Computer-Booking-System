@@ -125,5 +125,18 @@ public class Computer
         return Objects.hash(assetTag, manufacturer);
     }
 
-    // TODO - USE COMPARE TO BELOW BUT COMPARING DIFFERENT TYPES OF COMPUTERS?
+    @Override
+    public boolean equals(Object o)
+    {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Computer computer = (Computer) o;
+        return Double.compare(computer.weight, weight) == 0 &&
+                Objects.equals(assetTag, computer.assetTag) &&
+                Objects.equals(manufacturer, computer.manufacturer) &&
+                Objects.equals(processor, computer.processor) &&
+                Objects.equals(ramSize, computer.ramSize) &&
+                Objects.equals(diskSize, computer.diskSize) &&
+                Objects.equals(purchaseDate, computer.purchaseDate);
+    }
 }

@@ -3,6 +3,7 @@ package com.dkit.sd2b.BrianMcKenna;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class ComputerBooking implements Comparable<ComputerBooking>
 {
@@ -117,5 +118,24 @@ public class ComputerBooking implements Comparable<ComputerBooking>
         else {
             return 0;
         }
+    }
+
+    @Override
+    public boolean equals(Object o)
+    {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ComputerBooking that = (ComputerBooking) o;
+        return Objects.equals(bookingId, that.bookingId) &&
+                Objects.equals(studentId, that.studentId) &&
+                Objects.equals(bookingDateTime, that.bookingDateTime) &&
+                Objects.equals(returnDateTime, that.returnDateTime) &&
+                Objects.equals(computersOnLoan, that.computersOnLoan);
+    }
+
+    @Override
+    public int hashCode()
+    {
+        return Objects.hash(bookingId, studentId, bookingDateTime, returnDateTime, computersOnLoan);
     }
 }

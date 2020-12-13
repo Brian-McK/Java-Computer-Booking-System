@@ -1,6 +1,7 @@
 package com.dkit.sd2b.BrianMcKenna;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Student
 {
@@ -97,5 +98,24 @@ public class Student
                         "Student Email: %s\n" +
                         "Student Telephone: %s\n" +
                         "Student Computers On Loan: %s\n",studentId,name,email,telephone,computersOnLoan);
+    }
+
+    @Override
+    public boolean equals(Object o)
+    {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Student student = (Student) o;
+        return Objects.equals(studentId, student.studentId) &&
+                Objects.equals(name, student.name) &&
+                Objects.equals(email, student.email) &&
+                Objects.equals(telephone, student.telephone) &&
+                Objects.equals(computersOnLoan, student.computersOnLoan);
+    }
+
+    @Override
+    public int hashCode()
+    {
+        return Objects.hash(studentId, name, email, telephone, computersOnLoan);
     }
 }
