@@ -2,11 +2,11 @@ package com.dkit.sd2b.BrianMcKenna;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.lang.reflect.Array;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
+import java.util.LinkedHashSet;
 import java.util.Scanner;
 
 public class ComputerBookingDB
@@ -36,7 +36,6 @@ public class ComputerBookingDB
     // could put in studentID and assetTag instead?
     public void addBookingRecord(ComputerBooking compBooking)
     {
-        // need to check if already exists
         this.computerBookings.add(compBooking);
     }
 
@@ -154,5 +153,60 @@ public class ComputerBookingDB
         }
 
         return isValidDateToBook;
+    }
+
+    ArrayList<String> getAvailableComputers()
+    {
+        ArrayList<String> availableComputers = new ArrayList<>();
+
+        for (int i = 0; i < this.computerBookings.size(); i++)
+        {
+            if(this.computerBookings.get(i).getReturnDateTime() != null)
+            {
+                availableComputers.addAll(this.computerBookings.get(i).getComputersOnLoan());
+            }
+        }
+        LinkedHashSet<String> hashSet = new LinkedHashSet<>(availableComputers);
+
+        return new ArrayList<>(hashSet);
+    }
+
+    public boolean checkComputerIsAvailable(String computerAssetTag, ComputerDB computerDB,
+                                            ComputerBookingDB compBookingDB)
+    {
+        boolean isAvailable = false;
+
+        // check if the computer actually exists
+        Computer comp = computerDB.findComputerByAssetTag(computerAssetTag);
+
+        ArrayList<String> availableComputers = compBookingDB.getAvailableComputers();
+
+        if(comp != null)
+        {
+            // check if the computer is available
+            for (int i = 0; i < availableComputers.size(); i++)
+            {
+                if(comp.getAssetTag().equals(availableComputers.get(i)))
+                {
+                    isAvailable = true;
+                }
+            }
+        }
+        return isAvailable;
+
+        // available if it actually exists ie the college is renting it
+        // available if nobody else has it it booked
+        // if the computer has been returned i.e not null then its available
+    }
+
+    public void printCurrentBookings()
+    {
+        for (int i = 0; i < computerBookings.size(); i++)
+        {
+            if(computerBookings.get(i).getReturnDateTime() == null)
+            {
+                System.out.println(computerBookings.get(i));
+            }
+        }
     }
 }

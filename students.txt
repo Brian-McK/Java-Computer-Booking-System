@@ -1,9 +1,9 @@
-D0019221,Brian McKenna,D0019221@student.dkit.ie,0876253422,
+D0019221,Brian McKenna,D0019221@student.dkit.ie,0876253422,DKIT-2552L
 D0019425,Jim Frank,D0019425@student.dkit.ie,087231102,
-D0019890,Bob McDonald,D0019890@student.dkit.ie,08762901021,
+D0019890,Bob McDonald,D0019890@student.dkit.ie,08762901021,DKIT-2605RP
 D0019561,Anne Mackin,D0019561@student.dkit.ie,084223232,
 D0019872,Fred Breen,D0019872@student.dkit.ie,087665343,
-D0019002,Jack McGeogh,D0019002@student.dkit.ie,088927372,
+D0019002,Jack McGeogh,D0019002@student.dkit.ie,088927372,DKIT-24500D
 D0019991,Niall Corcoran,D0019991@student.dkit.ie,0852322323,
 D0019032,Paddy McKenna,D0019032@student.dkit.ie,083847363,
 D0019889,Rob McDonald,D0019889@student.dkit.ie,089092938,
